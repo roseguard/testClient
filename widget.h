@@ -11,6 +11,7 @@
 #include <QXmlStreamWriter>
 #include <QCoreApplication>
 #include <QTcpSocket>
+#include <QSettings>
 
 #include <QTextBrowser>
 #include <QLineEdit>
@@ -30,9 +31,6 @@ private:
     QVBoxLayout     *lay;
     QTextBrowser    *messageBox;
 
-    QLabel          *loginLab;
-    QLineEdit       *loginLine;
-
     QLabel          *messageLab;
     QLineEdit       *messageLine;
 
@@ -42,8 +40,13 @@ private:
     QPushButton     *sendButt;
 
     QTcpSocket      *socket;
+
+    QByteArray      login;
+    int             getMessagesCount = 0;
+    static QSettings       settings;
 public slots:
     void sendMessage();
+    void initMess(QByteArray message, QByteArray command);
     void getMessReply();
 };
 
